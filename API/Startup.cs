@@ -35,6 +35,7 @@ namespace API
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+            services.AddCors();
             
             services.AddSwaggerGen(c =>
             {
@@ -55,6 +56,7 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(p => p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthorization();
 
